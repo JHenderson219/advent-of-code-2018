@@ -1,0 +1,304 @@
+function checksumIDs(idStr) {
+  let arr = idStr.split('\n');
+  let dubsCount = 0;
+  let tripsCount = 0;
+
+  arr.forEach(str => {
+    let charMap = new Map();
+    let dubs = false;
+    let trips = false;
+
+    for (let i = 0; i < str.length; i++) {
+      let char = str[i];
+      if (!charMap.has(char)) {
+        charMap.set(char, 1);
+      } else {
+        let count = charMap.get(char);
+        count++;
+        charMap.set(char, count);
+      }
+    }
+    
+    charMap.forEach(char => {
+      if (char === 2) {
+        dubs = true;
+      }
+      if (char === 3) {
+        trips = true;
+      }
+    })
+
+    if (dubs) {
+      dubsCount++;
+    }
+    if (trips) {
+      tripsCount++;
+    }
+  })
+  // forEach str
+    // make map of each character, counting number of times it appears
+  // examine each character in map. if any have a count of 2, flip bool, likewise for 3.
+  // based on bools, increment the appropriate number
+  return dubsCount * tripsCount;
+}
+
+// let str = `abcdef
+// bababc
+// abbcde
+// abcccd
+// aabcdd
+// abcdee
+// ababab`
+
+let str = `uosnxmfkezbojfdgwvrtaqhluy
+iosnxmfkazbcopdgnvrtaqhluy
+ioanxmfkezbcjpdgwvrjaohluy
+uosnxmfkezbcjpjgwvrtaqhlut
+imsnxmfkezbcjpugwvataqhluy
+ioenxmfkezbcjpdgwvrraqhluz
+iosnxmfkezbcjpdgevitnqhluy
+iosnxmfkezcccpdgcvrtaqhluy
+loinxmfkezbcjpdgwvrtaqhluu
+iosnlmfkezbczndgwvrtaqhluy
+iosnxmfkezbcjpdgwvrifghluy
+iosnuhfkezbcjpugwvrtaqhluy
+iosnxmfkezbcwpdgwvrtaihlgy
+iosnxzfwuzbcjpdgwvrtaqhluy
+hosnxmfjizbcjpdgwvrtaqhluy
+iornxmfktzbcjpdgwvrtaqhluo
+nosnxmfkdzbcjpdgwvrtaqhlwy
+iosnxmfkezbcjpdgwvrtaktluq
+ioszxmlkezbcjvdgwvrtaqhluy
+ionnxmfkezbcfpdgwvbtaqhluy
+iosnxmfkezrcjedgwvrtaqhluq
+irsnxmfkezbcjpdqwvrtafhluy
+ioshxmzkezbccpdgwvrtaqhluy
+iosnxmfkezbrjpdgwvothqhluy
+bosnxmfkezbcbpdgwvrtnqhluy
+iosnomfkszbcjpcgwvrtaqhluy
+iosnxmflezbcjpdgwvrtaqmuuy
+iobnxmfkezbcjpdgxvrtaqfluy
+ioenxmfvezbcjgdgwvrtaqhluy
+iosnxmfkekbcjprgwvrtaqhlty
+iosnumfkezbcjpmgwvrtaqhlmy
+ionnxufkezbcjpdgwvrqaqhluy
+tosnxmfbezbcjpdghvrtaqhluy
+iosnxmfktzbcjpogwmrtaqhluy
+iosnamfkezbjjpdgtvrtaqhluy
+iosnemfkezmcjpdgwvrtaqhlry
+losnxmfkezbcjpdxwvrtaqsluy
+fomnxmekezbcjpdgwvrtaqhluy
+rosnxmfkezbcjzdcwvrtaqhluy
+iosngmrkezbcjpdgwvrtaqhduy
+iosnxmaaebbcjpdgwvrtaqhluy
+xosnxmfkezbcjpdgwvrmrqhluy
+iosnxmfkgzbujpdgwhrtaqhluy
+iosnxmekecbcjpmgwvrtaqhluy
+mesnxmfdezbcjpdgwvrtaqhluy
+insnxmbkezbcjpdgwvrtgqhluy
+iosyxmfkezbcjpdgwirtavhluy
+iosnxmfkezbcjpdgwlvtjqhluy
+iosnxmtkezbcjpdgwvjtaqhlut
+iosnxmfkezbsjpdhwvrtaqaluy
+iosnumfkezbcjpfgwvrtaqhlfy
+iosnxmekezbcdpxgwvrtaqhluy
+iosnfmfkezbcjpdgavctaqhluy
+iosnxmfkezvcjpdgfvrtamhluy
+iovnxmfkezbcjpdgzvrtaqhzuy
+iosnbmfkuzbcjpdgwvrtaqhlux
+iosnxmfkezbcjpdgwvftauhluc
+iosmbmfkezbcmpdgwvrtaqhluy
+ifsnxmfvezbcjpdgwvrwaqhluy
+iosnxmfkezfcjpdgwvrmaqhyuy
+iospxmfkezbcjpdkwvytaqhluy
+issnxmfkyzbcjpdgwyrtaqhluy
+iosnxmfkezbcjpdbwvrtjqhluz
+iosnxmfkwzbcjpdgfvrtajhluy
+iosnxmfkezbcjndgwvrnaqxluy
+iosnxmfkezbcjpdgwvltawwluy
+iosnxmfkezbcjpdguvrtwqhtuy
+iornxmfkezbcjpdgwertaihluy
+iofdxmokezbcjpdgwvrtaqhluy
+iosnxmfkezbcjpdgwgrtiqdluy
+iosnxmfkenbcjpdgwqrtiqhluy
+iosnxmfkezbcjpugwvotcqhluy
+iksnxmfkezbcjfdgqvrtaqhluy
+iasnxmfkezbcjpdgwvrtaqheuo
+iosnxmfkehbcipdgwvrtaqtluy
+iosnxifkezbajpdgwvrtaahluy
+iosnxmpkezbccpdguvrtaqhluy
+ioinxnfkezbcjpdgwvgtaqhluy
+gosnxmfkezbcjpdgwvrtvqkluy
+iolnxmfcezbcjpdgwvrtaqhlgy
+iosnxmfkezbcppdgwortjqhluy
+iesnxafkezbcjpdgwvrtayhluy
+iqsnxmfxazbcjpdgwvrtaqhluy
+cosnxmfkezbcjpdgwvrtkahluy
+ioenxmfkezbcjpdgwvrtzqyluy
+iosnxmhkwzbcjpdgwvrtabhluy
+iosnxmfkezbcjpdtwvrhaqiluy
+iisnxmfkezbcvpdwwvrtaqhluy
+iosnsmfkeobcjpdgfvrtaqhluy
+iwsnxmfkfzbcjpugwvrtaqhluy
+iosnxmflezbcjpdgwvrtaspluy
+gosnimfkezbcjpdgwvrtjqhluy
+iosnxmfkfibcjmdgwvrtaqhluy
+iosnxmfkpzbcjpdgwvitaqhwuy
+ionnxmfkerbcjpjgwvrtaqhluy
+iosnxmfkezecjgdgwvrtaqhljy
+iosnxufkezbcjpdguvltaqhluy
+vosnzmfkezbcjpdvwvrtaqhluy
+iolnxmfkecbcjpdgwvrtaqpluy
+iosnxmfkezbcjpdgwortaqhouw
+iomnxmfkezbckpdgwvrtaqhluu
+iopnymfkezbchpdgwvrtaqhluy
+iosnxmfkezhcjpdguvrtaqhnuy
+iosfxmfkezecjpdgyvrtaqhluy
+iopnxmfkgzbcjpdgwvbtaqhluy
+tosnxmffezbcjpdgwvttaqhluy
+iosnxmfkpabcjpdywvrtaqhluy
+iosrxmfkekbcjpdgwvrtaqrluy
+iosnxmokezbcjpdjwvrtaxhluy
+iolnxmfkezbccpdgwvetaqhluy
+iosnxmfketecjpdgwvrtaqnluy
+iosnxmfkxzbtjpdgwvroaqhluy
+ioinxmfkezbcjpdqwvrtjqhluy
+iosnxmfkqzbcjpdgwvrtaqzluz
+iosnxmfklzbcjpdgwwrtaqhluh
+iosnxmfkezbcjpdtwvrtmqhlpy
+iosnomfqezgcjpdgwvrtaqhluy
+iosnxmfkezbcjodgwvutaqhduy
+iosnxmfkezbcjppgwertaqhluu
+iosnxmfkezbcjqdggvrtaqhluw
+iosnxmvkezbcjpdgwvrtlqfluy
+icsnwmfkezbcjpdiwvrtaqhluy
+iosnxxbkezbhjpdgwvrtaqhluy
+ioknxmfkezacjpdgwvrtaqhliy
+iosgxmfkezbcjpdgevrtpqhluy
+iosnxmfkezbejpdgwlrtaqhldy
+iosnxyfkezbcjpdowvrtaqhlur
+iosnxmfkezbcjpnjwvrtaqhlvy
+iosnxglkezbcjpdvwvrtaqhluy
+iosnxmpkezbcjpdgwvrtxqhlub
+iosnxsfwezbcjpdgwmrtaqhluy
+aosnxmfkezbcjpdgwvrtaqhpwy
+iopnxmqkkzbcjpdgwvrtaqhluy
+iosnxmfkewbcfpdgwvrtaqmluy
+iosnxmfkekbcjpdgwvltawhluy
+iosnxmfmezbcjpdgwvitaqtluy
+iosnomfkezbcjpggwvrtaqhlly
+iobnkmfkezbcjpdywvrtaqhluy
+yosnxmfkezbcjydgwvrtarhluy
+iosnxifkezbckpdgyvrtaqhluy
+iornxmfkezbcjpduwvreaqhluy
+ivsfxmfjezbcjpdgwvrtaqhluy
+iosnxmfkezbcspdgwartaqhlui
+iosnxmfkezbcjpdgasstaqhluy
+iosnxmfkezbajpdgwvrtaqmlux
+gzsnxmfkezxcjpdgwvrtaqhluy
+iosnxmikczbcjpdgwvrtyqhluy
+iosnxmgkezbcjvdgwdrtaqhluy
+iosnxpfkezbcjpdgwvrbachluy
+igsnxmfkezbcjpdgwkrtaqtluy
+posnxmfkfzbcjpdgwvrpaqhluy
+iosnxmfkezbhjtdgwvrtaqhsuy
+iosfxmfkezbcjpdwwvrtaqvluy
+iosnxmfkehecjpdgwvrtaqoluy
+iasnxmfkezbckpdgfvrtaqhluy
+iosnxmfkezbwjpdggvrtaqhlmy
+iosnxmfkezbcjpdgwvrkaqhbun
+iosnxmikezbcjpdgwvrtaqhlnt
+iosnxmfiazbcjpdgwvetaqhluy
+iosnxmfkczbcjpfgwvrnaqhluy
+iosnxmfkezkcjpdgsvrqaqhluy
+iosnxmfkezbcspdgwvrtaqhxuc
+iosnxmfdezbcjpdgwzrteqhluy
+qosnxmrkezbcjpdgwvrtaqhlpy
+iosnxmfkpabcjpdywvrtawhluy
+ojsnxmfkezbcjpdgwvrtiqhluy
+iosrxmfkezbcjpdgdvrtaqhlmy
+iosnxmfkezbcnqdgwvrtayhluy
+ionnxmfkezbcjpdgwvrsaehluy
+iosnxmfkezbcjpdgwvrtmqhpuk
+ifsnxmfkezbcjpdpwvrtaqhluf
+insnxmfkezbcjpdgwrrtaqhmuy
+iosnxmfxezbcjpdjwvrfaqhluy
+iojnxmbkezccjpdgwvrtaqhluy
+iosnomlkezbcjpdgwvotaqhluy
+iosnamfkezbcjpdgwvrhqqhluy
+iksnxmfkezbbjrdgwvrtaqhluy
+iosnfmfkezbcjpdgwvrtaqhyay
+iosnxmzkezbcjpdayvrtaqhluy
+iosnxmfkezbcwpdgwbrtaqhlut
+iosnxmfkezccjpdgivrtaqhbuy
+iosuxmfkezbcjgdgwvrtaqhvuy
+ipsnxmfkezbcjpaiwvrtaqhluy
+iisnxmfkezbcjpdgpvrtaqqluy
+ihsnxmfkezbcspdgwvrtahhluy
+imsnxmfkezbcjpdgwvrtaqhkly
+josnxmfkezbpjpdgwvttaqhluy
+bosnxyfkezmcjpdgwvrtaqhluy
+iosnxmfkezbcjpkgwvrtkqhjuy
+iosnxmfkezbcjpdgwfrgaqfluy
+rosnxmfkqzbcjpdgwvxtaqhluy
+iosnxmfkezbcjpdgwlrwaqhluu
+yysnxmfkezbcjpdgwvrtaxhluy
+iosnxmpkezbcjldgwvrtaqoluy
+gosnxmfkezrcjpdgwvrtarhluy
+iosnxmfrezbcjrdmwvrtaqhluy
+iosnxmfkekbcjpdgpvrtaqhyuy
+iosbemfkezbcjpdgwdrtaqhluy
+iosnxmfkezucjpdgwvatamhluy
+ioanfmfkwzbcjpdgwvrtaqhluy
+iosnxphkezbcjpdgwvrtaqhlly
+ioynxmfkezbcjvbgwvrtaqhluy
+iosnnmfkwzbcjpdgwvrtaqbluy
+iosnxmfjezbcjpkgwtrtaqhluy
+iosexmfkezbcjpdgwvrtmshluy
+irsnxmwkezbcjpdgwvotaqhluy
+iosnxmfkezpcjpdgwvrlaqkluy
+iosnxmfkezbcjpwgwvroaqkluy
+iosnxmfkizbcjpdgwvrtaqxlay
+ioszxmfkezbcjpdgwertrqhluy
+iosnxmfkczscjpdgwvrtcqhluy
+iosnxmfkedbcjpdgwirtaqhliy
+iosgxmfpezbcjpdgwvvtaqhluy
+iownxmfiezbcjpdgwvrtajhluy
+iosnxmfkezbejudgwvrqaqhluy
+iomnpmfkezbcjpdgwvwtaqhluy
+ioshxmfkecbcjpdgwfrtaqhluy
+iosnxmfkezmcjpdgwzrtaqkluy
+iownxdfkezdcjpdgwvrtaqhluy
+iosnxmfjezbcjpdgwrotaqhluy
+roknxmfkezbcjpdgwxrtaqhluy
+iosnxmfkeibcjpdgovrtaqhloy
+ifsnxmfkelbcjpdgwvrcaqhluy
+iosnamfuezbcjpdwwvrtaqhluy
+rssnxmfkeebcjpdgwvrtaqhluy
+iosnomfkjzbcjpdgwvrtaqhlun
+iosnxmfuezbcjpdgwfjtaqhluy
+iosnxzfkezbcjpdewvrtaqhlfy
+iosnxmfkezbcjpdgwvrtzqhlgr
+iosixmfkezbcjpdgwvrkaqhlut
+issnxmfkezbdjpdpwvrtaqhluy
+iosnxmfrezbcjpdgwkrtaghluy
+iysnxmfkezbcjpdgwrrtmqhluy
+iosoxmfkezbcjpdgwjrtaqhlua
+eosnxmfkezvcjpdgwvztaqhluy
+iosmxmckezbcjpdgwvrtaqhlay
+iosnxmfkezbcjodgwvrtaqhlma
+josnxwftezbcjpdgwvrtaqhluy
+iosnxjfkepbcjpdgwvrtaqhlsy
+iosnnmfkezbcjpdgwvriaqhnuy
+iosnxofkezbcupdgwvrtayhluy
+iosnxmfkezbcjpddwvroaqhluz
+iosnomfkezbcapdhwvrtaqhluy
+iosixmfkezycjpdgwvrtaqhruy
+iosnwefkezbcjpdgwvrtaqcluy
+iosnxmfkvzbcbpdgwvrhaqhluy
+insnxmfkezbczpdgwvrtajhluy
+iosnxrfkelbcjpdgwvrtaqhluf
+iosnxmfkezbcjpdgwsrtaqhzud
+iosnxmfyvzbcjpdgwyrtaqhluy`
+
+console.log(checksumIDs(str));
